@@ -1,0 +1,13 @@
+#include <iostream>
+using namespece std;
+int main()
+{
+    string previous= " ";
+    string current;
+    while(cin >> current){
+       if (previous == current) 
+           cout << "repeat word: " << current << endl;
+       previous = current;
+    }
+    return 0;
+}
