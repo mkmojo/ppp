@@ -22,15 +22,7 @@ int main()
             continue;
         }
 
-        if(smallest == 0 && largest == 0){
-            smallest = tmp;
-            largest = tmp;
-        }
-        if(tmp < smallest)
-            smallest = tmp;
-        if(tmp > largest)
-            largest = tmp;
-            
+
         //conver length to meter
         if ( unit == "m" ){}
         else if(unit == "cm")
@@ -46,6 +38,15 @@ int main()
         }
         else { // error
         }
+
+        if(smallest == 0 && largest == 0){
+            smallest = tmp;
+            largest = tmp;
+        }
+        if(tmp < smallest)
+            smallest = tmp;
+        if(tmp > largest)
+            largest = tmp;
 
         v.push_back(tmp);
         sum += tmp;
