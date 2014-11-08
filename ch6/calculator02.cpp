@@ -181,6 +181,7 @@ double expression()
 int main()
     try
 {
+    cout << "Welcome to our simple calculator.\nPlease enter expressions using flating-point numbers" << endl;
     double val = 0;
     while (cin) {
         Token t = ts.get();
