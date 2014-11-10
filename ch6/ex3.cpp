@@ -135,12 +135,9 @@ double primary()
             {
                 Token next_t = ts.get();
                 if (next_t.kind == '!')
-                {
                     return factorial(narrow_cast<int>(t.value));
-                }
-                else{
+                else
                     ts.putback(next_t);
-                }
                 return t.value;  // return the number's value
             }
         default:
