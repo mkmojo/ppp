@@ -177,11 +177,22 @@ double expression()
 }
 
 //------------------------------------------------------------------------------
+//
+const string WELCOME = 
+"Welcome to our simple calculator.\n  \
+Please enter expressions using flating-point numbers";
+
+const string INSTRUCT = 
+"Support +, -, *, /, (, )\n \
+use x to exit \n \
+end expression with ;";
 
 int main()
     try
 {
-    cout << "Welcome to our simple calculator.\nPlease enter expressions using flating-point numbers" << endl;
+    cout << WELCOME << endl;
+    cout << INSTRUCT << endl;
+
     double val = 0;
     while (cin) {
         Token t = ts.get();
