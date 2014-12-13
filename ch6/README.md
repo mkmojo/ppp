@@ -1,5 +1,11 @@
-ex4
-===
+Notes
+---
+
+###ex2
+Add {} functionality to calculator program
+
+
+###ex4
 
 class definition need to end with ";"
 
@@ -10,6 +16,8 @@ class name_value
 {
     ...             //some other members
     name_value()    //default constructor 
-        :mem1(), mem2(){}
-};
+        :field1(), field2(){}
+}; <--- do not forget this 
 ```
+
+
