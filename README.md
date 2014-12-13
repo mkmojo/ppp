@@ -7,3 +7,6 @@ My intention is to leave some trace of my practices so that later on I know why 
 
 Please note that my answer is just my way to do things, you certainly may have better solutions. 
 
+Also, I did not plan to have a complete answer set to all exercises. If you are interested in some particular ones, please find your own way to them. 
+
+If you feel like a discussion, please create open issues, I would be more than happy to help out. 
