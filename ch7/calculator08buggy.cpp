@@ -72,10 +72,10 @@ Token Token_stream::get()
             if (isalpha(ch)) {
                 string s;
                 s += ch;
-                while(cin.get(ch) && (isalpha(ch) || isdigit(ch))) s+=ch;
+                while(cin.get(ch) && (isalpha(ch) || isdigit(ch))) s += ch;
                 cin.unget();
                 if (s == "let") return Token(let);	
-                if (s == "quit") return Token(name);
+                if (s == "quit") return Token(quit);
                 return Token(name,s);
             }
             error("Bad token");
@@ -138,7 +138,8 @@ double primary()
         case '(':
             {	double d = expression();
                 t = ts.get();
-                if (t.kind != ')') error("'(' expected");
+                if (t.kind != ')') error("')' expected");
+                return d;
             }
         case '-':
             return - primary();
