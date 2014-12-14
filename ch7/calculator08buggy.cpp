@@ -131,6 +131,7 @@ Token_stream ts;
 
 double expression();
 
+//deal with number and varialbe 
 double primary()
 {
     Token t = ts.get();
@@ -152,6 +153,7 @@ double primary()
     }
 }
 
+//deal with * and /
 double term()
 {
     double left = primary();
@@ -174,6 +176,7 @@ double term()
     }
 }
 
+//deal with + and -
 double expression()
 {
     double left = term();
@@ -193,6 +196,7 @@ double expression()
     }
 }
 
+//deal with variable declaration
 double declaration()
 {
     Token t = ts.get();
@@ -202,7 +206,7 @@ double declaration()
     Token t2 = ts.get();
     if (t2.kind != '=') error("= missing in declaration of " ,name);
     double d = expression();
-    names.push_back(Variable(name,d));
+    names.push_back(Variable(name,d)); //store new Variable in the global table
     return d;
 }
 
@@ -225,13 +229,14 @@ void clean_up_mess()
 
 const string prompt = "> ";
 const string result = "= ";
+const string INSTRUCTON = "Support +, -, *, / and variables. Use 'let' to define varialbe"; 
 
 void calculate()
 {
     while(true) try {
         cout << prompt;
         Token t = ts.get();
-        while (t.kind == print) t=ts.get();
+        while (t.kind == print) t=ts.get(); // handle leading ';'
         if (t.kind == quit) return;
         ts.unget(t);
         cout << result << statement() << endl;
@@ -243,8 +248,8 @@ void calculate()
 }
 
 int main()
-
     try {
+        cout << INSTRUCTON << endl;
         calculate();
         return 0;
     }
