@@ -36,6 +36,7 @@ const char print = ';';
 const char number = '8';
 const char name = 'a';
 const char thousand = 'k';
+const char f_sqrt= 's';
 
 Token Token_stream::get()
 {
@@ -88,6 +89,7 @@ Token Token_stream::get()
                 cin.unget();
                 if (s == "let") return Token(let);	
                 if (s == "quit") return Token(quit);
+                if (s == "sqrt") return Token(f_sqrt);
                 return Token(name,s);
             }
             error("Bad token");
@@ -148,8 +150,14 @@ double primary()
 {
     Token t = ts.get();
     switch (t.kind) {
+        case f_sqrt:
+            {
+                double d = primary();
+                return sqrt(d);
+            }
         case '(':
-            {	double d = expression();
+            {	
+                double d = expression();
                 t = ts.get();
                 if (t.kind != ')') error("')' expected");
                 return d;
