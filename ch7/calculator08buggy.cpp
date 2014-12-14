@@ -35,6 +35,7 @@ const char quit = 'Q';
 const char print = ';';
 const char number = '8';
 const char name = 'a';
+const char thousand = 'k';
 
 Token Token_stream::get()
 {
@@ -65,8 +66,19 @@ Token Token_stream::get()
         case '9':
             {	cin.unget();
                 double val;
-                cin >> val;
-                return Token(number,val);
+                cin >> val; //read in float number
+
+                char c;
+                cin.get(c); // try to see if we have k at the end of a number
+                if ( c != thousand ){
+                    cin.unget();
+                    return Token(number,val);
+                }
+                else{
+                    //has k trailing number
+                    return Token(number, val * 1000);
+                }
+                
             }
         default:
             if (isalpha(ch)) {
