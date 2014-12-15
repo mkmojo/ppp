@@ -153,7 +153,10 @@ double primary()
         case f_sqrt:
             {
                 double d = primary();
-                return sqrt(d);
+                if(d >= 0 ) 
+                    return sqrt(d);
+                else
+                    error("sqrt: cannot have negative number as input")
             }
         case '(':
             {	
