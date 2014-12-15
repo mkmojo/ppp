@@ -10,9 +10,12 @@ if what read in is a number token, send back value;
 if is a variable, read from a table and send back the value. 
 if a negative sign, means what we expect is another primary().
 
-###3.
+###7.
 the Token::get() reads in text and construct tokens.
 tokens are processed through grammar.
 finally the result of the interpretation is presented to std out.
 
+the content flollowing sqrt should be treated as promary() instead of expression(). 
+primary will only take the first braces;
+expression will take all the rest following sqrt.
 
