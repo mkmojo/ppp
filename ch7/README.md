@@ -19,3 +19,6 @@ the content flollowing sqrt should be treated as promary() instead of expression
 primary will only take the first braces;
 expression will take all the rest following sqrt.
 
+###8.
+Truly, I never thought about the possibility to have negative number is input to sqrt. 
+
