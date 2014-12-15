@@ -36,7 +36,8 @@ const char print = ';';
 const char number = '8';
 const char name = 'a';
 const char thousand = 'k';
-const char f_sqrt= 's';
+const char f_sqrt = 's';
+const char f_pow = 'p';
 
 Token Token_stream::get()
 {
@@ -53,6 +54,7 @@ Token Token_stream::get()
         case '%':
         case ';':
         case '=':
+        case ',':
             return Token(ch);
         case '.':
         case '0':
@@ -87,9 +89,12 @@ Token Token_stream::get()
                 s += ch;
                 while(cin.get(ch) && (isalpha(ch) || isdigit(ch))) s += ch;
                 cin.unget();
+
                 if (s == "let") return Token(let);	
                 if (s == "quit") return Token(quit);
                 if (s == "sqrt") return Token(f_sqrt);
+                if (s == "pow") return Token(f_pow);
+
                 return Token(name,s);
             }
             error("Bad token");
@@ -145,6 +150,16 @@ Token_stream ts;
 
 double expression();
 
+double do_pow(double x, int i)
+{
+    double p = 1;
+    for (int t = 0; t < i; t++) {
+        p *= x;
+    }
+    return p;
+}
+
+
 //deal with number and varialbe 
 double primary()
 {
@@ -156,7 +171,31 @@ double primary()
                 if(d >= 0 ) 
                     return sqrt(d);
                 else
-                    error("sqrt: cannot have negative number as input")
+                    error("sqrt: cannot have negative number as input");
+            }
+        case f_pow:
+            {
+                cout << "DEBUG: f_pow" << endl;
+                Token left_brace = ts.get();            //get left brace
+                if (left_brace.kind != '(')
+                    error("pow: expecting '('");
+
+                Token x = ts.get();
+
+                Token comma = ts.get();                 //get comma
+                if (comma.kind != ',')
+                    error(", expected");
+
+                Token i = ts.get();
+                if ( int(i.value)/1.0 != i.value)       //get i
+                    error("pow: i should be integer");
+
+                Token right_brace = ts.get();           //get right brace
+                if (right_brace.kind != ')')
+                    error("pow: expectin ')'");
+
+                double d = do_pow(x.value, i.value);    //calculate
+                return d;
             }
         case '(':
             {	
@@ -172,7 +211,7 @@ double primary()
         case name:
             return get_value(t.name);
         default:
-            error("primary expected");
+            error("primary expect");
     }
 }
 
