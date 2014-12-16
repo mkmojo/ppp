@@ -294,6 +294,7 @@ double declaration()
         names.push_back(Variable(t.name,d, true)); //store new Variable in the global table
         return d;
     }else{
+        Token t = ts.get();
         if (t.kind != name) error ("name expected in declaration");
         if (is_declared(t.name)) error(t.name, " declared twice");
         Token t2 = ts.get();
